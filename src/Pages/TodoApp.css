@@ -1,0 +1,20 @@
+.todo-list .todo.completed {
+  opacity: 0.5;
+}
+
+.todo-list .todo.completed .text {
+  text-decoration: line-through;
+}
+
+.fade-out {
+  animation: fadeOut 0.3s forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
