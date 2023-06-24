@@ -3,7 +3,7 @@ import { Container, Row, Col, Form, Button, ListGroup } from "react-bootstrap";
 import { IoCheckmarkDoneCircleOutline } from "react-icons/io5";
 import { MdOutlinePending } from "react-icons/md";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./TodoApp.css"; // Import custom CSS for animations
+import "./TodoApp.css";
 
 const TodoApp = () => {
   const [todos, setTodos] = useState([]);
@@ -39,7 +39,7 @@ const TodoApp = () => {
         text: inputValue,
         completed: false
       };
-      setTodos((prevTodos) => [...prevTodos, newTodo]);
+      setTodos((prevTodos) => [newTodo, ...prevTodos]);
       setInputValue("");
     }
   };
@@ -59,7 +59,9 @@ const TodoApp = () => {
         const existingCompleted = prevCompletedTodos.filter(
           (completedTodo) => completedTodo.id !== id
         );
-        return completed ? [...existingCompleted, ...completed] : existingCompleted;
+        return completed
+          ? [...existingCompleted, ...completed]
+          : existingCompleted;
       });
     });
   };
@@ -78,7 +80,7 @@ const TodoApp = () => {
         </Button>
       </div>
       <Row className="mt-3">
-        <Col>
+        <Col xs={12} md={{ span: 6, offset: 3 }}>
           <Form.Control
             type="text"
             placeholder="Enter a new TODO"
@@ -89,8 +91,8 @@ const TodoApp = () => {
           />
         </Col>
       </Row>
-      <Row>
-        <Col>
+      <Row className="todos-row">
+        <Col xs={12} md={6}>
           <h2>Active Todos</h2>
           <ListGroup className="todo-list">
             {todos?.map((todo) => (
@@ -109,7 +111,7 @@ const TodoApp = () => {
             ))}
           </ListGroup>
         </Col>
-        <Col>
+        <Col xs={12} md={6}>
           <h2>Completed Todos</h2>
           <ListGroup className="todo-list">
             {completedTodos?.map((todo) => (
